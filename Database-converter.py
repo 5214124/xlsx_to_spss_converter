@@ -21,7 +21,7 @@ def main():
 
             dfnew = pd.DataFrame(df)
             dfexport = pd.DataFrame(df)
-            keys_table = pd.DataFrame()
+            keys_table = pd.DataFrame(columns=3)
 
             for col in dfnew.columns:
 
@@ -39,6 +39,9 @@ def main():
                     else:
                         compare = {value: id + 1 for id, value in enumerate(true_unique_values)}
 
+                for id in compare:
+                    print(id)
+                
                 #Sprawdzenie, czy kolumna zawiera odpowiedzi z pytania otwartego, jeżeli tak, zostawiamy ją bez zmian
                 if is_tags_open_question(col, tags):
                     dfexport[col] = df[col]
@@ -53,7 +56,7 @@ def main():
         except:
             raise TypeError('Error:')
     except FileNotFoundError:
-        raise TypeError('Error:',FileNotFoundError)
+        raise TypeError('Error:', FileNotFoundError)
 
 
 #Sprawdzenie, czy w kolumnie jest wartość '999', jeżeli tak, to ją wyrzucamy z listy unikatowych kategorii
